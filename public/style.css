@@ -1,0 +1,40 @@
+h1{
+    margin-left:15em;
+    padding-top: 1em;
+}
+.container{
+    display: flex;
+    flex-direction:column ;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 2em;
+    background-color: rgb(190, 185, 185);
+}
+
+input{
+    margin-top: 2em;
+}
+span{
+    margin: 0em 32em;
+    margin-top: 0.4em;
+}
+input{
+    width: 13em;
+}
+#ok{
+    width: 5em;
+    margin-left: 35em;
+    margin-top: 1em;
+}
+.sign{
+    position: absolute;
+    left: 70em;
+    top: 1.5em;
+    width: 4.5em;
+}
+.log{
+    position: absolute;
+    left: 75em;
+    top: 1.5em;
+    width: 4.5em;
+}
