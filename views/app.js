@@ -1,4 +1,4 @@
-
+//always clone the git repo using https link
 const express=require('express')
 const app=express();
 const mongoose=require('mongoose');
@@ -10,6 +10,7 @@ const Table=require('./table');
 const bcrypt=require('bcryptjs');
 const nodemailer=require('nodemailer');
 const otpGenerator = require('otp-generator');
+const notifier = require('node-notifier');
 
 const sendMailData=async (mailData)=>{
     const otpDigits=generateOtp();
@@ -71,7 +72,14 @@ app.post('/register',async (req,res)=>{
             })
             const done=await submited.save();
             console.log(submited);
-            res.render('otpForm',{message:"Go to entered mail"});
+            res.render('otpForm');
+            // res.render('otpForm',{message:"Go to entered mail"});
+            notifier.notify({
+                title: 'Check Mail for verification',
+                message: 'Welcome to ChatSet ! Enjoy you Day',
+                sound: true,
+                wait: true
+              })
         }catch(err){
             console.log(err);
         }
