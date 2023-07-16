@@ -23,13 +23,11 @@ const sendMailData=async (mailData)=>{
             pass:"mlocmszhsaxaapav"
         }
     })
-    module.exports=mailData;
     let details={
         from:"tusharkumar0510@gmail.com",
         to:mailData,
         subject:"Mail for verification of chatset",
-        text:`your otp is : ${otpDigits}`,
-        html:`<p >Click Here to signup <a href="http://localhost:5000/login" style="border:1px solid black;color:white;background-color:blue;padding:5px">Signup here</a></p>`
+        html:`<p >Click on three dots to Use the Services of Chatset, and then Signup button <a href="http://localhost:5000/home" style="border:1px solid black;color:white;background-color:blue;padding:5px">Signup here</a></p>`
     }
     mailTrasport.sendMail(details,(err)=>{
         if(err){
@@ -73,10 +71,9 @@ app.post('/register',async (req,res)=>{
             const done=await submited.save();
             console.log(submited);
             res.render('otpForm');
-            // res.render('otpForm',{message:"Go to entered mail"});
             notifier.notify({
                 title: 'Check Mail for verification',
-                message: 'Welcome to ChatSet ! Enjoy you Day',
+                message: 'Welcome to ChatSet ! Enjoy the sevives in free',
                 sound: true,
                 wait: true
               })
@@ -106,7 +103,9 @@ app.post('/login',async (req,res)=>{
         if(userEmail.phno==vphone){
             const checkedPass=await bcrypt.compare(vpassword,userEmail.password);
             if(checkedPass){
-                res.render('Home')
+                res.render('otpForm');
+                sendMailData(vemail);
+                // res.render('Home')
             }
             else{
                 res.send("Invalid Password")
